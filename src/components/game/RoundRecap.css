@@ -1,0 +1,92 @@
+.round-recap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fade-in 0.3s ease-out;
+}
+
+.round-recap h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.recap-tricks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.recap-trick {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+}
+
+.recap-trick-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.recap-trick-num {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.recap-trick-winner {
+  font-size: 0.85rem;
+  color: #66bb6a;
+}
+
+.recap-trick-pourri {
+  font-size: 0.85rem;
+  color: #ffa726;
+  font-weight: bold;
+}
+
+.recap-trick-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recap-trick-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.recap-player-name {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.action-next-round {
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: none;
+  background: #1976d2;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.action-next-round:hover {
+  background: #1565c0;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

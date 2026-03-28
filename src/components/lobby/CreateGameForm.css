@@ -1,0 +1,45 @@
+.create-game-form, .join-game-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  max-width: 320px;
+  width: 100%;
+}
+
+.create-game-form h2, .join-game-form h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.create-game-form input, .join-game-form input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 1rem;
+}
+
+.create-game-form button, .join-game-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #1976d2;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.create-game-form button:hover:not(:disabled), .join-game-form button:hover:not(:disabled) {
+  background: #1565c0;
+}
+
+.create-game-form button:disabled, .join-game-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

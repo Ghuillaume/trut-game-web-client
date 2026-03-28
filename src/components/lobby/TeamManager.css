@@ -1,0 +1,93 @@
+.team-manager {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.team-manager h3 {
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.team-manager-hint {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.team-columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  justify-content: center;
+}
+
+.team-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.team-column h4 {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.team-swap-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  padding-top: 28px;
+}
+
+.team-player-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.15s;
+}
+
+.team-player-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.swap-arrow {
+  margin-left: auto;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.team-player-btn:hover .swap-arrow {
+  opacity: 0.7;
+}
+
+.team-a-col .team-player-btn {
+  border-left: 3px solid #42a5f5;
+}
+
+.team-b-col .team-player-btn {
+  border-left: 3px solid #ef5350;
+}
+
+@media (max-width: 600px) {
+  .team-columns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .team-swap-icon {
+    padding-top: 0;
+    justify-content: center;
+    transform: rotate(90deg);
+  }
+}

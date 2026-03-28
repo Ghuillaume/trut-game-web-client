@@ -1,0 +1,39 @@
+.trut-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #d32f2f, #c62828);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  animation: trut-slide 0.3s ease-out;
+}
+
+@keyframes trut-slide {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.trut-icon {
+  font-size: 1.5rem;
+}
+
+.trut-text {
+  font-size: 1rem;
+}
+
+.trut-status {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.trut-banner-deux-pareilles {
+  background: linear-gradient(135deg, #7b1fa2, #6a1b9a);
+}
+
+.trut-banner-brellan {
+  background: linear-gradient(135deg, #e65100, #bf360c);
+}

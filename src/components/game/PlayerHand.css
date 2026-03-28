@@ -1,0 +1,12 @@
+.player-hand {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+.hand-empty {
+  opacity: 0.5;
+  font-style: italic;
+}

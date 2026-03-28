@@ -1,0 +1,81 @@
+.action-panel {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.action-waiting {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.action-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.action-btn:active {
+  transform: scale(0.96);
+}
+
+.action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.action-play {
+  background: #43a047;
+  color: #fff;
+}
+
+.action-play:hover:not(:disabled) {
+  background: #388e3c;
+}
+
+.action-trut {
+  background: #f44336;
+  color: #fff;
+}
+
+.action-trut:hover {
+  background: #d32f2f;
+}
+
+.action-call {
+  background: #ff9800;
+  color: #fff;
+}
+
+.action-call:hover {
+  background: #f57c00;
+}
+
+.action-fold {
+  background: #78909c;
+  color: #fff;
+}
+
+.action-fold:hover {
+  background: #607d8b;
+}
+
+@media (max-width: 600px) {
+  .action-panel {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .action-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}

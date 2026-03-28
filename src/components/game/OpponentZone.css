@@ -1,0 +1,82 @@
+.opponent-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.opponent-left, .opponent-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.opponent-left {
+  left: 8px;
+}
+
+.opponent-right {
+  right: 8px;
+}
+
+.opponent-top {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.opponent-cards {
+  display: flex;
+  gap: 4px;
+}
+
+.opponent-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.opponent-active {
+  background: rgba(255, 235, 59, 0.15);
+  border-radius: 8px;
+}
+
+.opponent-team-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.team-team_a {
+  background: #42a5f5;
+}
+
+.team-team_b {
+  background: #ef5350;
+}
+
+.opponent-name {
+  font-weight: 500;
+}
+
+.opponent-turn-indicator {
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .opponent-zone {
+    padding: 4px;
+    gap: 3px;
+  }
+
+  .opponent-info {
+    font-size: 0.7rem;
+  }
+
+  .opponent-cards {
+    gap: 2px;
+  }
+}

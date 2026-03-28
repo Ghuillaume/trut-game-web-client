@@ -1,0 +1,48 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 40px 16px;
+  min-height: 100vh;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-header h1 {
+  font-size: 2.2rem;
+  margin: 0 0 8px;
+}
+
+.home-header p {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+.home-error {
+  padding: 10px 16px;
+  background: rgba(244, 67, 54, 0.2);
+  color: #ef9a9a;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.home-forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.home-divider {
+  opacity: 0.4;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
