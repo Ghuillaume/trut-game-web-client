@@ -1,0 +1,45 @@
+# Deploy Frontend to Firebase Hosting on release publish.
+#
+# Required GitHub Secrets:
+#   FIREBASE_SERVICE_ACCOUNT - Firebase service account JSON key.
+#     Generate via Firebase Console → Project Settings → Service Accounts
+#     → "Generate new private key", then store the full JSON as a secret.
+
+name: Deploy Frontend to Firebase
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: Build & Deploy to Firebase Hosting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: game-client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: game-client
+        run: npm ci
+
+      - name: Build
+        working-directory: game-client
+        run: npm run build
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: trut-game
