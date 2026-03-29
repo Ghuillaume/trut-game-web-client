@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGameStore } from '../store/gameStore';
 import { useGameSocket } from '../hooks/useGameSocket';
@@ -11,7 +11,10 @@ import { ActionPanel } from '../components/game/ActionPanel';
 import { EventLog } from '../components/game/EventLog';
 import { TrutBanner } from '../components/game/TrutBanner';
 import { RoundRecap } from '../components/game/RoundRecap';
+import { AnnouncementOverlay } from '../components/game/AnnouncementOverlay';
+import { playTrutAnnouncement, playPourriAnnouncement, getTrutAnnouncementText, getPourriAnnouncementText } from '../utils/SoundEngine';
 import { phaseLabel } from '../types/game';
+import type { TrutChallengeView } from '../types/game';
 import './GamePage.css';
 
 export function GamePage() {
@@ -77,6 +80,45 @@ export function GamePage() {
   const rematchVotes = gameView?.rematchVotes ?? [];
   const hasVotedRematch = playerId ? rematchVotes.includes(playerId) : false;
   const disconnectedPlayers = gameView?.disconnectedPlayers ?? [];
+
+  // Announcement overlay state
+  const [announcement, setAnnouncement] = useState<{
+    text: string;
+    type: 'trut' | 'deux-pareilles' | 'brellan' | 'pourri';
+  } | null>(null);
+
+  // Detect new trut challenge (null → non-null transition)
+  const prevTrutRef = useRef<TrutChallengeView | null>(null);
+  useEffect(() => {
+    const current = gameView?.trutChallenge ?? null;
+    if (!prevTrutRef.current && current) {
+      const challengerPseudo = gameView?.players.find(
+        (p) => p.id === current.challengerId
+      )?.pseudo ?? 'Quelqu\'un';
+
+      const type = current.challengeType === 'DEUX_PAREILLES' ? 'deux-pareilles'
+        : current.challengeType === 'BRELLAN' ? 'brellan'
+        : 'trut';
+
+      setAnnouncement({ text: challengerPseudo, type });
+      playTrutAnnouncement(challengerPseudo, current.challengeType);
+    }
+    prevTrutRef.current = current;
+  }, [gameView?.trutChallenge, gameView?.players]);
+
+  // Detect pourri trick (new completed trick with winnerTeam === null)
+  const prevTrickCountRef = useRef(0);
+  useEffect(() => {
+    const tricks = gameView?.completedTricks ?? [];
+    if (tricks.length > prevTrickCountRef.current && tricks.length > 0) {
+      const lastTrick = tricks[tricks.length - 1];
+      if (lastTrick.winnerTeam === null) {
+        setAnnouncement({ text: 'Pourri ! Qui pourrit dépourri !', type: 'pourri' });
+        playPourriAnnouncement();
+      }
+    }
+    prevTrickCountRef.current = tricks.length;
+  }, [gameView?.completedTricks]);
 
   if (!gameId || !playerId) {
     navigate('/');
@@ -229,6 +271,17 @@ export function GamePage() {
       )}
 
       <EventLog events={events} />
+
+      {/* Announcement overlay for trut/pourri */}
+      {announcement && (
+        <AnnouncementOverlay
+          text={announcement.type === 'pourri'
+            ? getPourriAnnouncementText()
+            : getTrutAnnouncementText(announcement.text, announcement.type === 'deux-pareilles' ? 'DEUX_PAREILLES' : announcement.type === 'brellan' ? 'BRELLAN' : 'TRUT')}
+          type={announcement.type}
+          onDone={() => setAnnouncement(null)}
+        />
+      )}
     </div>
   );
 }

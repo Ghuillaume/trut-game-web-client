@@ -71,3 +71,10 @@ export default defineConfig([
   },
 ])
 ```
+
+
+## Generate audio
+
+```
+say -v Thomas -r 150 -o /tmp/trut-audio/trut.aiff "Trut !"
+```
