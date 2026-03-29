@@ -20,6 +20,10 @@ export function useGameSocket(gameId: string | null, playerId: string | null) {
     const client = new Client({
       webSocketFactory: () => new SockJS(`${WS_BASE_URL}/ws`),
       reconnectDelay: 3000,
+      connectHeaders: {
+        gameId: gameId,
+        playerId: playerId,
+      },
       onConnect: () => {
         setConnected(true);
         client.subscribe(

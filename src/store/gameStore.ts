@@ -22,8 +22,8 @@ interface GameStore {
 
 const initialState = {
   pseudo: '',
-  playerId: null as string | null,
-  gameId: null as string | null,
+  playerId: (typeof localStorage !== 'undefined' ? localStorage.getItem('playerId') : null) as string | null,
+  gameId: (typeof localStorage !== 'undefined' ? localStorage.getItem('gameId') : null) as string | null,
   gameView: null as GameView | null,
   events: [] as string[],
   error: null as string | null,
@@ -49,6 +49,14 @@ export const useGameStore = create<GameStore>((set) => ({
   reset: () => {
     localStorage.removeItem('playerId');
     localStorage.removeItem('gameId');
-    set(initialState);
+    set({
+      pseudo: '',
+      playerId: null,
+      gameId: null,
+      gameView: null,
+      events: [],
+      error: null,
+      connected: false,
+    });
   },
 }));
