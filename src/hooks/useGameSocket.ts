@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { useGameStore } from '../store/gameStore';
+import { getGameView } from '../api/gameApi';
 import type { ActionMessage, GameView } from '../types/game';
 
 const WS_BASE_URL = import.meta.env.VITE_WS_BASE_URL ?? '';
@@ -37,6 +38,11 @@ export function useGameSocket(gameId: string | null, playerId: string | null) {
             setError(message.body);
           }
         );
+
+        // Fetch current state via REST to avoid missing updates published before WS subscription
+        getGameView(gameId, playerId)
+          .then((view) => setGameView(view))
+          .catch(() => {/* WS will provide updates */});
       },
       onDisconnect: () => setConnected(false),
       onStompError: (frame) => {

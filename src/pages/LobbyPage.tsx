@@ -4,7 +4,7 @@ import { PlayerList } from '../components/lobby/PlayerList';
 import { TeamManager } from '../components/lobby/TeamManager';
 import { useGameStore } from '../store/gameStore';
 import { useGameSocket } from '../hooks/useGameSocket';
-import { addAiPlayer, swapTeam } from '../api/gameApi';
+import { addAiPlayer, swapTeam, startGame } from '../api/gameApi';
 import './LobbyPage.css';
 
 export function LobbyPage() {
@@ -19,9 +19,9 @@ export function LobbyPage() {
   useGameSocket(resolvedGameId, playerId);
 
   const [addingAi, setAddingAi] = useState(false);
+  const [starting, setStarting] = useState(false);
 
-  const isCreator = gameView?.creatorId === playerId || 
-    (gameView?.players && gameView.players.length > 0 && gameView.players[0].id === playerId);
+  const isCreator = gameView?.creatorId === playerId;
 
   // Redirect to game when phase changes from WAITING
   useEffect(() => {
@@ -54,6 +54,18 @@ export function LobbyPage() {
       await swapTeam(resolvedGameId, playerId, targetPlayerId);
     } catch (err) {
       console.error('Failed to swap team:', err);
+    }
+  }, [resolvedGameId, playerId]);
+
+  const handleStartGame = useCallback(async () => {
+    if (!resolvedGameId || !playerId) return;
+    setStarting(true);
+    try {
+      await startGame(resolvedGameId, playerId);
+    } catch (err) {
+      console.error('Failed to start game:', err);
+    } finally {
+      setStarting(false);
     }
   }, [resolvedGameId, playerId]);
 
@@ -107,13 +119,30 @@ export function LobbyPage() {
               {addingAi ? 'Ajout en cours…' : `🤖 Ajouter une IA (${playerCount}/4)`}
             </button>
           )}
+
+          {isCreator && playerCount === 4 && (
+            <button
+              className="lobby-start-btn"
+              onClick={handleStartGame}
+              disabled={starting}
+              data-testid="start-game-btn"
+            >
+              {starting ? 'Lancement…' : '🚀 Lancer la partie'}
+            </button>
+          )}
         </>
       )}
 
       {(!gameView || playerCount < 4) && (
         <p className="lobby-waiting-text">
-          La partie démarrera automatiquement quand 4 joueurs seront présents.
+          En attente de {4 - playerCount} joueur(s) pour compléter la partie.
           {isCreator && ' Vous pouvez ajouter des IA pour compléter.'}
+        </p>
+      )}
+
+      {playerCount === 4 && !isCreator && (
+        <p className="lobby-waiting-text">
+          En attente du lancement par le créateur de la partie…
         </p>
       )}
     </div>
