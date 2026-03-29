@@ -10,29 +10,34 @@ interface GameBoardProps {
   playerCount: number;
 }
 
-export function GameBoard({ currentTrick, completedTricks, players, playerCount }: GameBoardProps) {
+export function GameBoard({ currentTrick, completedTricks, players }: GameBoardProps) {
   const getPlayerPseudo = (playerId: string) =>
     players.find((p) => p.id === playerId)?.pseudo ?? '?';
 
-  // Delay clearing the trick for 1 second after all 4 cards are played
+  // Delay clearing the trick for 2 seconds when a trick completes.
+  // The backend evaluates completed tricks atomically (trick goes from N entries → 0),
+  // so we detect completion by watching completedTricks.length increase.
   const [displayedTrick, setDisplayedTrick] = useState<TrickEntryView[]>(currentTrick);
-  const prevTrickRef = useRef(currentTrick);
+  const prevCompletedCountRef = useRef(completedTricks.length);
 
   useEffect(() => {
-    const prevTrick = prevTrickRef.current;
-    prevTrickRef.current = currentTrick;
+    const prevCount = prevCompletedCountRef.current;
+    prevCompletedCountRef.current = completedTricks.length;
 
-    // If previous trick was complete (4 entries) and now we have a new trick (fewer entries),
-    // keep showing the old trick for 1 second
-    if (prevTrick.length === playerCount && currentTrick.length < playerCount) {
+    // A new trick was completed — show its cards for 2 seconds before clearing
+    if (completedTricks.length > prevCount && completedTricks.length > 0) {
+      const lastCompleted = completedTricks[completedTricks.length - 1];
+      if (lastCompleted) {
+        setDisplayedTrick(lastCompleted.entries);
+      }
       const timer = setTimeout(() => {
         setDisplayedTrick(currentTrick);
-      }, 1200);
+      }, 2000);
       return () => clearTimeout(timer);
     } else {
       setDisplayedTrick(currentTrick);
     }
-  }, [currentTrick, playerCount]);
+  }, [currentTrick, completedTricks]);
 
   // Last completed trick for quick reference
   const lastCompletedTrick = completedTricks && completedTricks.length > 0
