@@ -13,6 +13,7 @@ import { TrutBanner } from '../components/game/TrutBanner';
 import { RoundRecap } from '../components/game/RoundRecap';
 import { AnnouncementOverlay } from '../components/game/AnnouncementOverlay';
 import { playTrutAnnouncement, playPourriAnnouncement, getTrutAnnouncementText, getPourriAnnouncementText } from '../utils/SoundEngine';
+import { teamPlayerNames } from '../types/game';
 import { phaseLabel } from '../types/game';
 import type { TrutChallengeView } from '../types/game';
 import './GamePage.css';
@@ -152,6 +153,7 @@ export function GamePage() {
           myTeam={gameView.myTeam}
           roundNumber={gameView.roundNumber}
           fortial={gameView.fortial}
+          players={gameView.players}
         />
         <div className="game-phase" data-testid="game-phase">
           {phaseLabel(gameView.phase)}
@@ -240,7 +242,7 @@ export function GamePage() {
         <div className="game-over-panel" data-testid="game-over">
           <h2>🏆 Partie terminée !</h2>
           <p>
-            Vainqueur : <strong>{gameView.winner}</strong>
+            Vainqueur : <strong>{gameView.winner ? teamPlayerNames(gameView.players, gameView.winner) : '?'}</strong>
           </p>
           <div className="game-over-actions">
             <button

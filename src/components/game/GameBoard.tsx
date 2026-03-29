@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { TrickEntryView, CompletedTrickView, PlayerView } from '../../types/game';
+import { teamPlayerNames } from '../../types/game';
 import { CardComponent } from '../shared/CardComponent';
 import './GameBoard.css';
 
@@ -72,7 +73,7 @@ export function GameBoard({ currentTrick, completedTricks, players }: GameBoardP
           </div>
           {lastCompletedTrick.winnerTeam ? (
             <span className="last-trick-winner">
-              Pli remporté par {lastCompletedTrick.winnerTeam}
+              Pli remporté par {teamPlayerNames(players, lastCompletedTrick.winnerTeam)}
             </span>
           ) : (
             <span className="last-trick-pourri" data-testid="pourri-label">💀 Pourri !</span>

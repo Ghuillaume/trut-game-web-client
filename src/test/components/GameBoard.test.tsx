@@ -40,7 +40,7 @@ describe('GameBoard', () => {
         playerCount={4}
       />
     );
-    expect(screen.getByText(/Pli remporté par TEAM_A/)).toBeInTheDocument();
+    expect(screen.getByText(/Pli remporté par Alice/)).toBeInTheDocument();
   });
 
   it('should show pourri label when no winner', () => {

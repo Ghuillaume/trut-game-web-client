@@ -1,4 +1,5 @@
 import type { CompletedTrickView, PlayerView } from '../../types/game';
+import { teamPlayerNames } from '../../types/game';
 import { CardComponent } from '../shared/CardComponent';
 import './RoundRecap.css';
 
@@ -21,7 +22,7 @@ export function RoundRecap({ completedTricks, players, onNextRound }: RoundRecap
             <div className="recap-trick-header">
               <span className="recap-trick-num">Pli {i + 1}</span>
               {trick.winnerTeam ? (
-                <span className="recap-trick-winner">→ {trick.winnerTeam}</span>
+                <span className="recap-trick-winner">→ {teamPlayerNames(players, trick.winnerTeam!)}</span>
               ) : (
                 <span className="recap-trick-pourri">💀 Pourri</span>
               )}

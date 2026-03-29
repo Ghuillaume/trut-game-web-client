@@ -39,7 +39,7 @@ describe('RoundRecap', () => {
 
   it('should show winner for won trick', () => {
     render(<RoundRecap completedTricks={completedTricks} players={players} onNextRound={() => {}} />);
-    expect(screen.getByText(/TEAM_A/)).toBeInTheDocument();
+    expect(screen.getByText(/→ Alice/)).toBeInTheDocument();
   });
 
   it('should show pourri for tied trick', () => {

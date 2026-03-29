@@ -113,3 +113,9 @@ export function phaseLabel(phase: string): string {
   };
   return labels[phase] ?? phase;
 }
+
+/** Returns player pseudos for a given team, e.g. "Alice et Bob" */
+export function teamPlayerNames(players: PlayerView[], team: string): string {
+  const names = players.filter((p) => p.team === team).map((p) => p.pseudo);
+  return names.join(' et ') || team;
+}
