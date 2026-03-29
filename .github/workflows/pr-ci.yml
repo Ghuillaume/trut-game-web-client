@@ -3,10 +3,8 @@ name: Frontend CI
 on:
   push:
     branches: [main]
-    paths: [game-client/**]
   pull_request:
     types: [opened, synchronize, reopened]
-    paths: [game-client/**]
 
 jobs:
   build-and-test:
@@ -15,7 +13,6 @@ jobs:
     timeout-minutes: 10
     defaults:
       run:
-        working-directory: game-client
 
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +21,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: game-client/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - run: npm ci
       - run: npm run build
