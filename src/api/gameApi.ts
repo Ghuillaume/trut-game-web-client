@@ -45,3 +45,10 @@ export function swapTeam(gameId: string, requestingPlayerId: string, targetPlaye
     body: JSON.stringify({ requestingPlayerId, targetPlayerId }),
   });
 }
+
+export function startGame(gameId: string, requestingPlayerId: string): Promise<void> {
+  return request(`/api/games/${gameId}/start`, {
+    method: 'POST',
+    body: JSON.stringify({ requestingPlayerId }),
+  });
+}
