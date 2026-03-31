@@ -29,6 +29,6 @@ describe('CreateGameForm', () => {
   });
   it('should show loading text', () => {
     render(<CreateGameForm onSubmit={() => {}} loading />);
-    expect(screen.getByText('Création...')).toBeInTheDocument();
+    expect(screen.getByText('Création…')).toBeInTheDocument();
   });
 });

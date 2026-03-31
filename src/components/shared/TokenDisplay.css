@@ -5,12 +5,12 @@
   gap: 6px;
   padding: 10px 14px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface);
 }
 
 .token-highlight {
-  background: rgba(76, 175, 80, 0.2);
-  border: 1px solid rgba(76, 175, 80, 0.4);
+  background: rgba(52, 60, 10, 0.1);
+  border: 1px solid rgba(52, 60, 10, 0.2);
 }
 
 .token-team {
@@ -48,13 +48,13 @@
   width: 36px;
   height: 18px;
   border-radius: 3px;
-  background: linear-gradient(135deg, #ffd54f, #ffb300);
+  background: linear-gradient(135deg, #d4a843, #b8922a);
   color: #3e2723;
   font-size: 0.55rem;
   font-weight: 900;
   letter-spacing: 1px;
   text-transform: uppercase;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .token-petit {
@@ -64,13 +64,13 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #90caf9, #42a5f5);
-  color: #0d47a1;
+  background: linear-gradient(135deg, #8b9a5e, #6b7a3e);
+  color: #1a2000;
   font-size: 0.4rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .token-count {

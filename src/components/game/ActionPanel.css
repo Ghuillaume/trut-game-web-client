@@ -31,39 +31,45 @@
 }
 
 .action-play {
-  background: #43a047;
-  color: #fff;
+  background: var(--btn-primary);
+  color: var(--white);
 }
 
 .action-play:hover:not(:disabled) {
-  background: #388e3c;
+  background: #2a3108;
 }
 
 .action-trut {
-  background: #f44336;
-  color: #fff;
+  background: #780000 !important;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .action-trut:hover {
-  background: #d32f2f;
+  background: #5a0000 !important;
 }
 
 .action-call {
-  background: #ff9800;
-  color: #fff;
+  background: var(--label);
+  color: var(--white);
 }
 
 .action-call:hover {
-  background: #f57c00;
+  background: #6b3f2f;
 }
 
 .action-fold {
-  background: #78909c;
-  color: #fff;
+  background: var(--input-border);
+  color: var(--white);
 }
 
 .action-fold:hover {
-  background: #607d8b;
+  background: #565c66;
 }
 
 @media (max-width: 600px) {

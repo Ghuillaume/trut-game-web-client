@@ -52,22 +52,42 @@ export function HomePage() {
 
   return (
     <div className="home-page" data-testid="home-page">
-      <header className="home-header">
-        <h1>🃏 Trut Online</h1>
-        <p>Le jeu de cartes traditionnel de l'ouest de la France</p>
-      </header>
+      {/* Hero Section */}
+      <section className="home-hero">
+        <h1 className="home-hero-title">
+          <span>Le Jeu de</span> <em>Truts</em>
+        </h1>
+        <p className="home-hero-subtitle">
+          Le Trut est un jeu de plis français du XVII<sup>e</sup> siècle où le courage vaut plus que les cartes.
+          Maîtrisez l'art du bluff.
+        </p>
+        <div className="home-hero-image">
+          <img src="/hero-cards.jpg" alt="Cartes anciennes et verre de vin" />
+        </div>
+      </section>
 
       {error && <div className="home-error" data-testid="home-error">{error}</div>}
 
-      <div className="home-forms">
+      {/* Forms Section */}
+      <section className="home-forms">
         <CreateGameForm onSubmit={handleCreate} loading={loading} />
-        <div className="home-divider">ou</div>
         <JoinGameForm
           onSubmit={handleJoin}
           initialGameId={gameIdFromUrl ?? ''}
           loading={loading}
         />
-      </div>
+      </section>
+
+      {/* Codex Section */}
+      <section className="home-codex">
+        <span className="home-codex-label">Le Codex</span>
+        <h2 className="home-codex-title">Les Trois Piliers du Trut</h2>
+        <p className="home-codex-text">
+          Avant d'entrer dans le salon, rappelez-vous que le Trut se gagne dans l'esprit,
+          pas dans les mains. Apprenez la hiérarchie des cartes (le 7 étant le plus fort)
+          lancez votre «&nbsp;Trut&nbsp;» au bon moment !.
+        </p>
+      </section>
     </div>
   );
 }

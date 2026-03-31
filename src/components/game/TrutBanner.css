@@ -1,11 +1,12 @@
 .trut-banner {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #d32f2f, #c62828);
-  color: #fff;
+  background: linear-gradient(135deg, #780000, #5a0000);
+  color: var(--white);
   border-radius: 8px;
   font-size: 1.1rem;
   animation: trut-slide 0.3s ease-out;
@@ -30,10 +31,42 @@
   text-transform: uppercase;
 }
 
+.trut-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trut-responses {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+}
+
+.trut-response {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  text-align: center;
+}
+
+.trut-response.folded {
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.trut-response.waiting {
+  animation: pulse 2s infinite;
+}
+
 .trut-banner-deux-pareilles {
-  background: linear-gradient(135deg, #7b1fa2, #6a1b9a);
+  background: linear-gradient(135deg, #5c2d91, #4a1d7e);
 }
 
 .trut-banner-brellan {
-  background: linear-gradient(135deg, #e65100, #bf360c);
+  background: linear-gradient(135deg, #bf360c, #8e2409);
 }

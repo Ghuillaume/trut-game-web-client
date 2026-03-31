@@ -1,9 +1,16 @@
 .player-hand {
   display: flex;
-  gap: 8px;
   justify-content: center;
-  flex-wrap: wrap;
-  padding: 16px;
+  padding: 8px 16px 16px;
+}
+
+.player-hand > * {
+  margin-right: -10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.player-hand > *:last-child {
+  margin-right: 0;
 }
 
 .hand-empty {

@@ -6,9 +6,9 @@
   gap: 12px;
   min-height: 120px;
   padding: 16px;
-  border-radius: 12px;
-  background: rgba(0, 100, 0, 0.15);
-  border: 2px solid rgba(0, 100, 0, 0.2);
+  border-radius: 0;
+  background: transparent;
+  border: none;
 }
 
 .trick-area {
@@ -18,8 +18,9 @@
 }
 
 .board-empty {
-  opacity: 0.4;
+  color: rgba(255, 255, 255, 0.3);
   font-style: italic;
+  font-family: 'Noto Serif', 'Georgia', serif;
 }
 
 .trick-cards {
@@ -37,8 +38,10 @@
 }
 
 .trick-player {
-  font-size: 0.75rem;
-  opacity: 0.7;
+  font-size: 0.5625rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .last-trick-result {
@@ -47,8 +50,8 @@
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
   animation: fade-in 0.3s ease-out;
 }
 
@@ -58,13 +61,13 @@
 }
 
 .last-trick-winner {
-  font-size: 0.8rem;
-  color: #66bb6a;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .last-trick-pourri {
-  font-size: 0.9rem;
-  color: #ffa726;
+  font-size: 0.85rem;
+  color: #e65100;
   font-weight: bold;
 }
 

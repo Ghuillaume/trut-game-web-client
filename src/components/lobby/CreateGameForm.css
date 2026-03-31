@@ -1,45 +1,129 @@
-.create-game-form, .join-game-form {
+/* ─── Shared Form Card Styles ─── */
+.create-game-form,
+.join-game-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  max-width: 320px;
+  gap: 24px;
+  padding: 32px 32px 48px 36px;
+  background: var(--surface);
+  border-radius: 2px;
   width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.create-game-form h2, .join-game-form h2 {
+.create-game-form {
+  border-left: 4px solid var(--btn-primary);
+}
+
+.join-game-form {
+  border-left: 4px solid var(--btn-accent);
+}
+
+/* ─── Headings ─── */
+.create-game-form h2,
+.join-game-form h2 {
   margin: 0;
-  font-size: 1.1rem;
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.create-game-form input, .join-game-form input {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  color: inherit;
-  font-size: 1rem;
+.create-game-form h2 {
+  color: var(--heading);
 }
 
-.create-game-form button, .join-game-form button {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  background: #1976d2;
-  color: #fff;
-  font-size: 1rem;
+.join-game-form h2 {
+  color: var(--accent);
+}
+
+/* ─── Form Fields ─── */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-family: 'Newsreader', 'Georgia', serif;
   font-weight: 600;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--label);
+}
+
+/* ─── Inputs ─── */
+.create-game-form input,
+.join-game-form input {
+  padding: 10px 12px;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+  background: var(--white);
+  color: var(--heading);
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.create-game-form input::placeholder,
+.join-game-form input::placeholder {
+  color: var(--input-border);
+  font-style: italic;
+}
+
+.create-game-form input:focus,
+.join-game-form input:focus {
+  border-bottom-color: var(--heading);
+}
+
+.join-game-form input:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* ─── Buttons ─── */
+.create-game-form button,
+.join-game-form button {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 2px;
+  color: var(--white);
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-size: 1.05rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: opacity 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
-.create-game-form button:hover:not(:disabled), .join-game-form button:hover:not(:disabled) {
-  background: #1565c0;
+.create-game-form button {
+  background: var(--btn-primary);
 }
 
-.create-game-form button:disabled, .join-game-form button:disabled {
-  opacity: 0.5;
+.join-game-form button {
+  background: var(--btn-accent);
+}
+
+.create-game-form button:hover:not(:disabled),
+.join-game-form button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.create-game-form button:active:not(:disabled),
+.join-game-form button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.create-game-form button:disabled,
+.join-game-form button:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
 }

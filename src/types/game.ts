@@ -16,6 +16,8 @@ export interface TrutChallengeView {
   challengerId: string;
   status: string;
   challengeType?: string;
+  foldedPlayerIds?: string[];
+  calledPlayerId?: string | null;
 }
 
 export interface ScoreView {

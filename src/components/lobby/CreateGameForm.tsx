@@ -16,18 +16,22 @@ export function CreateGameForm({ onSubmit, loading }: CreateGameFormProps) {
 
   return (
     <form className="create-game-form" onSubmit={handleSubmit} data-testid="create-game-form">
-      <h2>Créer une partie</h2>
-      <input
-        type="text"
-        placeholder="Votre pseudo"
-        value={pseudo}
-        onChange={(e) => setPseudo(e.target.value)}
-        maxLength={20}
-        required
-        data-testid="pseudo-input"
-      />
+      <h2>⊕ Créer une partie</h2>
+      <div className="form-field">
+        <label htmlFor="create-pseudo">Votre pseudo</label>
+        <input
+          id="create-pseudo"
+          type="text"
+          placeholder="ex. Le Chevalier"
+          value={pseudo}
+          onChange={(e) => setPseudo(e.target.value)}
+          maxLength={20}
+          required
+          data-testid="pseudo-input"
+        />
+      </div>
       <button type="submit" disabled={!pseudo.trim() || loading} data-testid="create-btn">
-        {loading ? 'Création...' : 'Créer'}
+        {loading ? 'Création…' : '✦ Ouvrir la Table'}
       </button>
     </form>
   );

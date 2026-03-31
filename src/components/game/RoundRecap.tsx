@@ -1,4 +1,4 @@
-import type { CompletedTrickView, PlayerView } from '../../types/game';
+import type { CompletedTrickView, PlayerView, TrutChallengeView } from '../../types/game';
 import { teamPlayerNames } from '../../types/game';
 import { CardComponent } from '../shared/CardComponent';
 import './RoundRecap.css';
@@ -6,15 +6,34 @@ import './RoundRecap.css';
 interface RoundRecapProps {
   completedTricks: CompletedTrickView[];
   players: PlayerView[];
+  trutChallenge?: TrutChallengeView | null;
   onNextRound: () => void;
 }
 
-export function RoundRecap({ completedTricks, players, onNextRound }: RoundRecapProps) {
+export function RoundRecap({ completedTricks, players, trutChallenge, onNextRound }: RoundRecapProps) {
   const getPlayerPseudo = (playerId: string) =>
     players.find((p) => p.id === playerId)?.pseudo ?? '?';
 
+  const trickWins: Record<string, number> = {};
+  completedTricks.forEach((t) => {
+    if (t.winnerTeam) trickWins[t.winnerTeam] = (trickWins[t.winnerTeam] ?? 0) + 1;
+  });
+  const roundWinnerTeam = Object.entries(trickWins).find(([, wins]) => wins >= 2)?.[0];
+  const roundType = trutChallenge ? 'Trut' : 'Pigeon';
+
   return (
     <div className="round-recap" data-testid="round-recap">
+      {roundWinnerTeam ? (
+        <div className="recap-result" data-testid="recap-result">
+          <strong>{teamPlayerNames(players, roundWinnerTeam)}</strong> remportent un <em>{roundType}</em> !
+        </div>
+      ) : (
+        completedTricks.length > 0 && (
+          <div className="recap-result" data-testid="recap-result">
+            Manche nulle — tous les plis sont pourris !
+          </div>
+        )
+      )}
       <h3>📋 Récapitulatif de la manche</h3>
       <div className="recap-tricks">
         {completedTricks.map((trick, i) => (

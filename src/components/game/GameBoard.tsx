@@ -11,6 +11,8 @@ interface GameBoardProps {
   playerCount: number;
 }
 
+const TRICK_ROTATIONS = [6, -3, -85, 15];
+
 export function GameBoard({ currentTrick, completedTricks, players }: GameBoardProps) {
   const getPlayerPseudo = (playerId: string) =>
     players.find((p) => p.id === playerId)?.pseudo ?? '?';
@@ -54,8 +56,8 @@ export function GameBoard({ currentTrick, completedTricks, players }: GameBoardP
         ) : (
           <div className="trick-cards">
             {displayedTrick.map((entry, i) => (
-              <div key={i} className="trick-entry">
-                <CardComponent cardId={entry.card} small />
+              <div key={i} className="trick-entry" style={{ transform: `rotate(${TRICK_ROTATIONS[i % 4]}deg)` }}>
+                <CardComponent cardId={entry.card} />
                 <span className="trick-player">{getPlayerPseudo(entry.playerId)}</span>
               </div>
             ))}

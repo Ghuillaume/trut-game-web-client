@@ -57,8 +57,8 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: var(--white);
 }
 
 /* Trut variant */

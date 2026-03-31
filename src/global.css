@@ -3,14 +3,22 @@
 }
 
 :root {
-  --bg: #1a1a2e;
-  --text: #e8e8f0;
-  --surface: rgba(255, 255, 255, 0.06);
+  --bg: #fcf9ef;
+  --text: #47483c;
+  --heading: #343c0a;
+  --accent: #780000;
+  --label: #87503f;
+  --surface: #f7f4e9;
+  --surface-border: #e5e2d9;
+  --input-border: #6b7280;
+  --btn-primary: #343c0a;
+  --btn-accent: #780000;
+  --white: #ffffff;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+  font-family: 'Newsreader', 'Georgia', serif;
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -23,12 +31,17 @@ body {
   margin: 0 auto;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  color: var(--heading);
+}
+
 button {
-  font-family: inherit;
+  font-family: 'Noto Serif', 'Georgia', serif;
   -webkit-tap-highlight-color: transparent;
 }
 
 input {
-  font-family: inherit;
-  font-size: 16px; /* prevents iOS zoom on focus */
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 16px;
 }

@@ -1,48 +1,117 @@
+/* ─── Page Layout ─── */
 .home-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 40px 16px;
+  gap: 42px;
+  padding: 48px 24px 96px;
   min-height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.home-header {
-  text-align: center;
+/* ─── Hero ─── */
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
 }
 
-.home-header h1 {
-  font-size: 2.2rem;
-  margin: 0 0 8px;
-}
-
-.home-header p {
+.home-hero-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  color: var(--heading);
   margin: 0;
-  opacity: 0.7;
-  font-size: 1rem;
+  letter-spacing: -0.5px;
 }
 
+.home-hero-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.home-hero-subtitle {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+  max-width: 448px;
+}
+
+.home-hero-image {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.home-hero-image img {
+  width: 100%;
+  max-width: 342px;
+  border-radius: 2px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transform: rotate(2deg);
+  border: 12px solid #e5e2d9;
+}
+
+/* ─── Error Banner ─── */
 .home-error {
-  padding: 10px 16px;
-  background: rgba(244, 67, 54, 0.2);
-  color: #ef9a9a;
-  border-radius: 8px;
-  max-width: 400px;
-  text-align: center;
+  padding: 12px 20px;
+  background: rgba(120, 0, 0, 0.1);
+  color: var(--accent);
+  border-radius: 2px;
+  border-left: 4px solid var(--accent);
+  width: 100%;
+  max-width: 500px;
+  font-size: 0.95rem;
 }
 
+/* ─── Forms Section ─── */
 .home-forms {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  gap: 32px;
   width: 100%;
-  max-width: 400px;
 }
 
-.home-divider {
-  opacity: 0.4;
+/* ─── Codex Section ─── */
+.home-codex {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.home-codex-label {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-weight: 600;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+  letter-spacing: 2.4px;
+  color: var(--accent);
+}
+
+.home-codex-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: var(--heading);
+  margin: 0;
+}
+
+.home-codex-text {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
 }

@@ -29,7 +29,15 @@
 
 .opponent-cards {
   display: flex;
-  gap: 4px;
+  gap: 0;
+}
+
+.opponent-cards > * {
+  margin-right: -8px;
+}
+
+.opponent-cards > *:last-child {
+  margin-right: 0;
 }
 
 .opponent-info {
@@ -40,30 +48,45 @@
 }
 
 .opponent-active {
-  background: rgba(255, 235, 59, 0.15);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
 }
 
 .opponent-team-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.team-team_a {
-  background: #42a5f5;
-}
-
-.team-team_b {
-  background: #ef5350;
-}
-
-.opponent-name {
-  font-weight: 500;
+  display: none;
 }
 
 .opponent-turn-indicator {
-  font-size: 1rem;
+  display: none;
+}
+
+.opponent-name {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 400;
+  font-size: 0.5625rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.trut-badge {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trut-badge-trute {
+  background: rgba(120, 0, 0, 0.5);
+  color: #f1eee4;
+}
+
+.trut-badge-suivi {
+  background: rgba(52, 60, 10, 0.5);
+  color: #f1eee4;
 }
 
 @media (max-width: 600px) {
@@ -77,6 +100,14 @@
   }
 
   .opponent-cards {
-    gap: 2px;
+    gap: 0;
+  }
+
+  .opponent-cards > * {
+    margin-right: -10px;
+  }
+
+  .opponent-cards > *:last-child {
+    margin-right: 0;
   }
 }

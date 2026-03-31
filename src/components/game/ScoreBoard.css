@@ -3,25 +3,91 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 12px;
 }
 
 .score-round {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.7;
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-style: italic;
+  font-size: 0.625rem;
+  color: #343c0a;
+  background: rgba(52, 60, 10, 0.05);
+  padding: 2px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
 }
 
-.score-teams {
+.score-row {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-label {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-weight: 600;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #87503f;
+  width: 40px;
+  text-align: right;
+}
+
+.score-bars {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.score-grands {
+  display: flex;
+  gap: 4px;
+}
+
+.score-grand-bar {
+  width: 14px;
+  height: 8px;
+  border-radius: 1px;
+}
+
+.score-grand-bar.filled {
+  background: #343c0a;
+}
+
+.score-grand-bar.empty {
+  background: rgba(200, 199, 184, 0.3);
+}
+
+.score-separator {
+  width: 1px;
+  height: 10px;
+  background: rgba(200, 199, 184, 0.3);
+}
+
+.score-petits {
+  display: flex;
+  gap: 4px;
+}
+
+.score-petit-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.score-petit-dot.filled {
+  background: #780000;
+}
+
+.score-petit-dot.empty {
+  background: rgba(200, 199, 184, 0.3);
 }
 
 .score-fortial {
-  color: #ffd54f;
-  font-weight: bold;
-  font-size: 1.1rem;
+  color: var(--accent);
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 700;
+  font-size: 0.85rem;
   animation: pulse 1.5s infinite;
 }
 
@@ -32,13 +98,16 @@
 
 @media (max-width: 600px) {
   .score-board {
-    padding: 8px;
     gap: 4px;
   }
 
-  .score-teams {
+  .score-row {
     gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+  }
+
+  .score-label {
+    width: 32px;
+    font-size: 0.5625rem;
+    letter-spacing: 1px;
   }
 }

@@ -31,6 +31,18 @@ export function GamePage() {
     useGameState();
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+  const [showRecap, setShowRecap] = useState(false);
+
+  // Delay showing recap to let players see the last trick
+  useEffect(() => {
+    if (gameView?.phase === 'END_OF_ROUND') {
+      setShowRecap(false);
+      const timer = setTimeout(() => setShowRecap(true), 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowRecap(false);
+    }
+  }, [gameView?.phase]);
 
   const handlePlayCard = useCallback(() => {
     if (!selectedCard || !playerId) return;
@@ -145,6 +157,14 @@ export function GamePage() {
 
   const isEndOfRound = gameView.phase === 'END_OF_ROUND';
 
+  const getTrutBadge = (pid: string): 'trute' | 'suivi' | null => {
+    const challenge = gameView.trutChallenge;
+    if (!challenge || challenge.status !== 'ACCEPTED') return null;
+    if (pid === challenge.challengerId) return 'trute';
+    if (pid === challenge.calledPlayerId) return 'suivi';
+    return null;
+  };
+
   return (
     <div className="game-page" data-testid="game-page">
       <div className="game-top-bar">
@@ -186,31 +206,46 @@ export function GamePage() {
         </div>
       )}
 
-      {/* End of round recap */}
-      {isEndOfRound ? (
+      {/* Game table — always shown so last trick remains visible during end-of-round delay */}
+      <div className="game-table">
+        {otherPlayers.map((p, i) => (
+          <OpponentZone
+            key={p.id}
+            player={p}
+            isCurrentPlayer={p.id === gameView.currentPlayerId}
+            position={positions[i] ?? 'top'}
+            trutBadge={getTrutBadge(p.id)}
+          />
+        ))}
+        <GameBoard
+          currentTrick={gameView.currentTrick}
+          completedTricks={gameView.completedTricks ?? []}
+          players={gameView.players}
+          playerCount={gameView.players.length}
+        />
+      </div>
+
+      {isEndOfRound && !showRecap && (
+        <div className="end-round-transition">Fin de la manche…</div>
+      )}
+
+      {isEndOfRound && showRecap && (
         <RoundRecap
           completedTricks={gameView.completedTricks ?? []}
           players={gameView.players}
+          trutChallenge={gameView.trutChallenge}
           onNextRound={handleNextRound}
         />
-      ) : (
+      )}
+
+      {!isEndOfRound && (
         <>
-          <div className="game-table">
-            {otherPlayers.map((p, i) => (
-              <OpponentZone
-                key={p.id}
-                player={p}
-                isCurrentPlayer={p.id === gameView.currentPlayerId}
-                position={positions[i] ?? 'top'}
-              />
-            ))}
-            <GameBoard
-              currentTrick={gameView.currentTrick}
-              completedTricks={gameView.completedTricks ?? []}
-              players={gameView.players}
-              playerCount={gameView.players.length}
-            />
-          </div>
+          {getTrutBadge(playerId!) === 'trute' && (
+            <div className="self-trut-badge trut-badge trut-badge-trute">Truté !</div>
+          )}
+          {getTrutBadge(playerId!) === 'suivi' && (
+            <div className="self-trut-badge trut-badge trut-badge-suivi">Suivi !</div>
+          )}
 
           <PlayerHand
             cards={gameView.myHand}

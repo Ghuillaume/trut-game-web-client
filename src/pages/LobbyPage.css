@@ -3,12 +3,16 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 32px 16px;
+  padding: 32px 24px;
   min-height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .lobby-page h1 {
   margin: 0;
+  font-family: 'Noto Serif', 'Georgia', serif;
+  color: var(--heading);
 }
 
 .lobby-status {
@@ -16,11 +20,11 @@
 }
 
 .lobby-connected {
-  color: #66bb6a;
+  color: #2e7d32;
 }
 
 .lobby-disconnected {
-  color: #ffa726;
+  color: #e65100;
 }
 
 .lobby-share {
@@ -30,6 +34,7 @@
 
 .lobby-share p {
   margin: 0 0 8px;
+  color: var(--text);
   opacity: 0.7;
 }
 
@@ -43,31 +48,38 @@
 
 .lobby-link code {
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 2px;
   font-size: 0.85rem;
   word-break: break-all;
+  color: var(--heading);
 }
 
 .lobby-link button {
   padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-  color: inherit;
+  border-radius: 2px;
+  border: 1px solid var(--surface-border);
+  background: var(--white);
+  color: var(--heading);
   cursor: pointer;
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .lobby-link button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface);
 }
 
 .lobby-code {
   margin-top: 8px;
   font-size: 0.9rem;
+  color: var(--text);
 }
 
 .lobby-waiting-text {
+  color: var(--text);
   opacity: 0.6;
   font-style: italic;
   text-align: center;
@@ -75,18 +87,19 @@
 
 .lobby-add-ai-btn {
   padding: 12px 24px;
-  border-radius: 10px;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-  color: inherit;
+  border-radius: 2px;
+  border: 2px dashed var(--surface-border);
+  background: var(--white);
+  color: var(--heading);
   cursor: pointer;
+  font-family: 'Noto Serif', 'Georgia', serif;
   font-size: 1rem;
   transition: all 0.2s;
 }
 
 .lobby-add-ai-btn:hover:not(:disabled) {
-  border-color: #ffc107;
-  background: rgba(255, 193, 7, 0.1);
+  border-color: var(--label);
+  background: var(--surface);
 }
 
 .lobby-add-ai-btn:disabled {
@@ -96,37 +109,39 @@
 
 .lobby-start-btn {
   padding: 14px 32px;
-  border-radius: 12px;
+  border-radius: 2px;
   border: none;
-  background: linear-gradient(135deg, #43a047, #66bb6a);
-  color: white;
+  background: var(--btn-primary);
+  color: var(--white);
   cursor: pointer;
+  font-family: 'Noto Serif', 'Georgia', serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
 .lobby-start-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(67, 160, 71, 0.4);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .lobby-start-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   transform: none;
 }
 
 /* AI and disconnect badges */
 .player-badge-ai {
-  background: rgba(255, 193, 7, 0.3);
-  color: #ffd54f;
+  background: rgba(135, 80, 63, 0.15);
+  color: var(--label);
 }
 
 .player-badge-dc {
-  background: rgba(239, 83, 80, 0.3);
-  color: #ef9a9a;
+  background: rgba(120, 0, 0, 0.1);
+  color: var(--accent);
 }
 
 .player-disconnected {

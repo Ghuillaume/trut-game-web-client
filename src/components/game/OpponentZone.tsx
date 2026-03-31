@@ -6,9 +6,10 @@ interface OpponentZoneProps {
   player: PlayerView;
   isCurrentPlayer: boolean;
   position: 'left' | 'top' | 'right';
+  trutBadge?: 'trute' | 'suivi' | null;
 }
 
-export function OpponentZone({ player, isCurrentPlayer, position }: OpponentZoneProps) {
+export function OpponentZone({ player, isCurrentPlayer, position, trutBadge }: OpponentZoneProps) {
   return (
     <div
       className={`opponent-zone opponent-${position} ${isCurrentPlayer ? 'opponent-active' : ''}`}
@@ -23,6 +24,8 @@ export function OpponentZone({ player, isCurrentPlayer, position }: OpponentZone
         <span className={`opponent-team-dot team-${player.team?.toLowerCase()}`} />
         <span className="opponent-name">{player.pseudo}</span>
         {isCurrentPlayer && <span className="opponent-turn-indicator">🎴</span>}
+        {trutBadge === 'trute' && <span className="trut-badge trut-badge-trute">Truté !</span>}
+        {trutBadge === 'suivi' && <span className="trut-badge trut-badge-suivi">Suivi !</span>}
       </div>
     </div>
   );
