@@ -150,6 +150,13 @@ export function GamePage() {
   const otherPlayers = sortedPlayers.slice(1); // exclude self (index 0)
   const positions: Array<'left' | 'top' | 'right'> = ['left', 'top', 'right'];
 
+  // Build a map: playerId → position (bottom/left/top/right)
+  const playerPositionMap: Record<string, string> = {};
+  playerPositionMap[gameView.players.find(p => p.id === playerId)?.id ?? ''] = 'bottom';
+  otherPlayers.forEach((p, i) => {
+    playerPositionMap[p.id] = positions[i] ?? 'top';
+  });
+
   // Current player pseudo for "C'est à X de jouer"
   const currentPlayerPseudo = gameView.players.find(
     (p) => p.id === gameView.currentPlayerId
@@ -222,6 +229,7 @@ export function GamePage() {
           completedTricks={gameView.completedTricks ?? []}
           players={gameView.players}
           playerCount={gameView.players.length}
+          playerPositionMap={playerPositionMap}
         />
       </div>
 

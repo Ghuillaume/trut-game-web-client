@@ -15,6 +15,7 @@ const completedTricks = [
       { playerId: 'p2', card: 'NINE_SPADES' },
     ],
     winnerTeam: 'TEAM_A',
+    winnerId: 'p1',
   },
   {
     entries: [
@@ -22,6 +23,7 @@ const completedTricks = [
       { playerId: 'p2', card: 'NINE_DIAMONDS' },
     ],
     winnerTeam: null,
+    winnerId: null,
   },
 ];
 

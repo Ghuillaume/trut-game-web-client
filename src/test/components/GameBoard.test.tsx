@@ -7,10 +7,23 @@ const players = [
   { id: 'p2', pseudo: 'Bob', team: 'TEAM_B', cardCount: 3 },
 ];
 
+const playerPositionMap: Record<string, string> = {
+  p1: 'bottom',
+  p2: 'top',
+};
+
 describe('GameBoard', () => {
   it('should show empty message', () => {
-    render(<GameBoard currentTrick={[]} completedTricks={[]} players={players} playerCount={4} />);
-    expect(screen.getByText('Aucune carte jouée')).toBeInTheDocument();
+    render(
+      <GameBoard
+        currentTrick={[]}
+        completedTricks={[]}
+        players={players}
+        playerCount={4}
+        playerPositionMap={playerPositionMap}
+      />
+    );
+    expect(screen.getByText('En attente des cartes…')).toBeInTheDocument();
   });
 
   it('should render trick entries', () => {
@@ -20,13 +33,29 @@ describe('GameBoard', () => {
         completedTricks={[]}
         players={players}
         playerCount={4}
+        playerPositionMap={playerPositionMap}
       />
     );
     expect(screen.getByText('Alice')).toBeInTheDocument();
   });
 
-  it('should show last trick winner', () => {
-    render(
+  it('should render played card in correct position slot', () => {
+    const { container } = render(
+      <GameBoard
+        currentTrick={[{ playerId: 'p2', card: 'NINE_SPADES' }]}
+        completedTricks={[]}
+        players={players}
+        playerCount={4}
+        playerPositionMap={playerPositionMap}
+      />
+    );
+    const slot = container.querySelector('.slot-top');
+    expect(slot).toBeInTheDocument();
+    expect(screen.getByText('Bob')).toBeInTheDocument();
+  });
+
+  it('should show won pile for winner', () => {
+    const { container } = render(
       <GameBoard
         currentTrick={[]}
         completedTricks={[{
@@ -35,26 +64,32 @@ describe('GameBoard', () => {
             { playerId: 'p2', card: 'NINE_SPADES' },
           ],
           winnerTeam: 'TEAM_A',
+          winnerId: 'p1',
         }]}
         players={players}
         playerCount={4}
+        playerPositionMap={playerPositionMap}
       />
     );
-    expect(screen.getByText(/Pli remporté par Alice/)).toBeInTheDocument();
+    const pile = container.querySelector('.won-pile.pile-bottom');
+    expect(pile).toBeInTheDocument();
+    expect(container.querySelectorAll('.won-pile-card')).toHaveLength(1);
   });
 
-  it('should show pourri label when no winner', () => {
-    render(
+  it('should not show won pile when no winnerId (pourri)', () => {
+    const { container } = render(
       <GameBoard
         currentTrick={[]}
         completedTricks={[{
           entries: [{ playerId: 'p1', card: 'SEVEN_HEARTS' }],
           winnerTeam: null,
+          winnerId: null,
         }]}
         players={players}
         playerCount={4}
+        playerPositionMap={playerPositionMap}
       />
     );
-    expect(screen.getByTestId('pourri-label')).toBeInTheDocument();
+    expect(container.querySelectorAll('.won-pile-card')).toHaveLength(0);
   });
 });

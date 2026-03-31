@@ -28,6 +28,7 @@ export interface ScoreView {
 export interface CompletedTrickView {
   entries: TrickEntryView[];
   winnerTeam: string | null; // null = pourri
+  winnerId: string | null;
 }
 
 export interface GameView {
