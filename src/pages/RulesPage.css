@@ -1,0 +1,372 @@
+/* ─── Rules Page Layout ─── */
+.rules-page {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 96px 16px 160px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+.rules-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.rules-header-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-style: italic;
+  font-size: 48px;
+  color: #343c0a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.rules-header-subtitle {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-weight: 200;
+  font-style: italic;
+  font-size: 18px;
+  color: #87503f;
+  opacity: 0.8;
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.rules-divider {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 16px;
+  color: #87503f;
+  opacity: 0.5;
+  letter-spacing: 4px;
+  margin-top: 8px;
+}
+
+/* ─── Section Common ─── */
+.rules-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rules-section-number {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #87503f;
+  letter-spacing: 2px;
+}
+
+.rules-section-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 24px;
+  color: #343c0a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.rules-section-text {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #47483c;
+  margin: 0;
+}
+
+/* ─── Info Boxes Grid ─── */
+.rules-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rules-info-box {
+  background: #e5e2d9;
+  border-left: 3px solid #343c0a;
+  padding: 16px 20px;
+  border-radius: 2px;
+}
+
+.rules-info-label {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #87503f;
+  margin: 0 0 6px;
+}
+
+.rules-info-value {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #343c0a;
+  margin: 0;
+}
+
+/* ─── Card Hierarchy ─── */
+.rules-hierarchy {
+  background: #e5e2d9;
+  border-left: 4px solid #343c0a;
+  border-radius: 2px;
+  padding: 24px 28px;
+}
+
+.rules-hierarchy-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 24px;
+  color: #343c0a;
+  margin: 0 0 20px;
+}
+
+.rules-hierarchy-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(200, 199, 184, 0.2);
+}
+
+.rules-hierarchy-row:last-child {
+  border-bottom: none;
+}
+
+.rules-hierarchy-card {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 20px;
+  color: #1c1c16;
+  font-weight: 600;
+}
+
+.rules-hierarchy-rank {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #87503f;
+}
+
+/* ─── Subsections ─── */
+.rules-subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.rules-subsection-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #343c0a;
+  margin: 0;
+}
+
+.rules-subsection-text {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #47483c;
+  margin: 0;
+}
+
+/* ─── Trut Responses ─── */
+.rules-responses {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.rules-response {
+  background: #e5e2d9;
+  border-left: 3px solid #343c0a;
+  padding: 14px 20px;
+  border-radius: 2px;
+}
+
+.rules-response-action {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c1c16;
+  margin: 0 0 4px;
+}
+
+.rules-response-desc {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 14px;
+  color: #87503f;
+  margin: 0;
+}
+
+/* ─── Scoring List ─── */
+.rules-scoring-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rules-scoring-item {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #47483c;
+  padding-left: 20px;
+  position: relative;
+}
+
+.rules-scoring-item::before {
+  content: '♠';
+  position: absolute;
+  left: 0;
+  color: #87503f;
+  font-size: 12px;
+  top: 3px;
+}
+
+.rules-scoring-item strong {
+  color: #343c0a;
+}
+
+/* ─── Learn More Button ─── */
+.rules-learn-more {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  color: #87503f;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #87503f;
+  padding: 4px 0;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.rules-learn-more:hover {
+  opacity: 0.7;
+}
+
+/* ─── CTA Section ─── */
+.rules-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 0;
+  text-align: center;
+}
+
+.rules-cta-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 30px;
+  color: #343c0a;
+  margin: 0;
+}
+
+.rules-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.rules-cta-primary {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3.2px;
+  background: #343c0a;
+  color: #ffffff;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.rules-cta-primary:hover {
+  opacity: 0.9;
+}
+
+.rules-cta-secondary {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #87503f;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #87503f;
+  padding: 4px 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.rules-cta-secondary:hover {
+  opacity: 0.7;
+}
+
+/* ─── Fortial Callout ─── */
+.rules-fortial {
+  background: #e5e2d9;
+  border-left: 4px solid #87503f;
+  border-radius: 2px;
+  padding: 20px 24px;
+  margin-top: 8px;
+}
+
+.rules-fortial-title {
+  font-family: 'Noto Serif', 'Georgia', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #343c0a;
+  margin: 0 0 10px;
+}
+
+.rules-fortial-text {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #47483c;
+  margin: 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .rules-page {
+    padding: 64px 14px 140px;
+    gap: 48px;
+  }
+
+  .rules-header-title {
+    font-size: 36px;
+  }
+
+  .rules-header-subtitle {
+    font-size: 16px;
+  }
+
+  .rules-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rules-hierarchy {
+    padding: 18px 20px;
+  }
+
+  .rules-cta-title {
+    font-size: 24px;
+  }
+}

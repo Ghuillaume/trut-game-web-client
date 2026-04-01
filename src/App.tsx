@@ -4,6 +4,7 @@ import { LobbyPage } from './pages/LobbyPage';
 import { GamePage } from './pages/GamePage';
 import { RulesPage } from './pages/RulesPage';
 import { BottomNav } from './components/shared/BottomNav';
+import { ErrorBoundary } from './components/shared/ErrorBoundary';
 
 function AppContent() {
   const location = useLocation();
@@ -15,7 +16,7 @@ function AppContent() {
         <Route path="/" element={<HomePage />} />
         <Route path="/rules" element={<RulesPage />} />
         <Route path="/lobby/:gameId" element={<LobbyPage />} />
-        <Route path="/game/:gameId" element={<GamePage />} />
+        <Route path="/game/:gameId" element={<ErrorBoundary><GamePage /></ErrorBoundary>} />
       </Routes>
       {showNav && <BottomNav />}
     </>
@@ -25,7 +26,9 @@ function AppContent() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      <ErrorBoundary>
+        <AppContent />
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }

@@ -20,6 +20,15 @@ function getAudioContext(): AudioContext {
   return audioCtx;
 }
 
+/* ===== Mute system ===== */
+let muted = typeof window !== 'undefined' ? localStorage.getItem('trut_muted') === 'true' : false;
+
+export function isMuted(): boolean { return muted; }
+export function setMuted(value: boolean): void {
+  muted = value;
+  if (typeof window !== 'undefined') localStorage.setItem('trut_muted', String(value));
+}
+
 /** Pre-loaded audio elements for instant playback */
 const audioCache: Map<string, HTMLAudioElement> = new Map();
 
@@ -71,6 +80,7 @@ if (typeof window !== 'undefined') {
  * Creates a fresh Audio element from the same source to allow overlapping plays.
  */
 function playAudioClip(key: string): void {
+  if (muted) return;
   try {
     const cached = audioCache.get(key);
     if (cached) {
@@ -91,6 +101,7 @@ function playAudioClip(key: string): void {
  * Percussive "table slam" sound — short burst of filtered noise with fast decay.
  */
 export function playTableSlam(): void {
+  if (muted) return;
   try {
     const ctx = getAudioContext();
     const duration = 0.15;
@@ -127,6 +138,60 @@ export function playTableSlam(): void {
 }
 
 /**
+ * Soft thud sound for card play — short filtered noise burst.
+ */
+export function playCardSound(): void {
+  if (muted) return;
+  try {
+    const ctx = getAudioContext();
+    const duration = 0.08;
+    const sampleRate = ctx.sampleRate;
+    const length = Math.floor(sampleRate * duration);
+    const buffer = ctx.createBuffer(1, length, sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) {
+      const t = i / sampleRate;
+      const envelope = Math.exp(-t * 60);
+      data[i] = (Math.random() * 2 - 1) * envelope * 0.3;
+    }
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 400;
+    const gain = ctx.createGain();
+    gain.gain.value = 0.5;
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+  } catch { /* silent */ }
+}
+
+/**
+ * Victory fanfare — ascending notes (C5, E5, G5, C6).
+ */
+export function playVictorySound(): void {
+  if (muted) return;
+  try {
+    const ctx = getAudioContext();
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + i * 0.15);
+      osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+    });
+  } catch { /* silent */ }
+}
+
+/**
  * Returns the announcement text for the given challenge type.
  */
 export function getTrutAnnouncementText(playerName: string, challengeType?: string): string {
@@ -151,6 +216,7 @@ export function getPourriAnnouncementText(): string {
  * Combined: table slam + voice clip for TRUT announcements.
  */
 export function playTrutAnnouncement(_playerName: string, challengeType?: string): void {
+  if (muted) return;
   playTableSlam();
 
   const clipKey = challengeType === 'DEUX_PAREILLES' ? 'deux_pareilles'
@@ -164,5 +230,6 @@ export function playTrutAnnouncement(_playerName: string, challengeType?: string
  * Pourri voice announcement.
  */
 export function playPourriAnnouncement(): void {
+  if (muted) return;
   playAudioClip('pourri');
 }

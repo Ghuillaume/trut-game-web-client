@@ -17,6 +17,7 @@ export function PlayerHand({ cards, selectedCard, onSelectCard, canPlay }: Playe
           cardId={cardId}
           selected={selectedCard === cardId}
           onClick={canPlay ? () => onSelectCard(cardId) : undefined}
+          disabled={!canPlay}
         />
       ))}
       {cards.length === 0 && <span className="hand-empty">Aucune carte</span>}

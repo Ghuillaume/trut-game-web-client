@@ -68,7 +68,18 @@
 
 .card-clickable:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 25px rgba(52, 60, 10, 0.3), 0 0 15px rgba(52, 60, 10, 0.15);
+}
+
+.card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(40%);
+}
+
+.card-disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .card-selected {

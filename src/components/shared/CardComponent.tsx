@@ -8,9 +8,10 @@ interface CardComponentProps {
   onClick?: () => void;
   small?: boolean;
   mini?: boolean;
+  disabled?: boolean;
 }
 
-export function CardComponent({ cardId, faceDown, selected, onClick, small, mini }: CardComponentProps) {
+export function CardComponent({ cardId, faceDown, selected, onClick, small, mini, disabled }: CardComponentProps) {
   const sizeClass = mini ? 'card-mini' : small ? 'card-small' : '';
 
   if (faceDown || !cardId) {
@@ -23,14 +24,16 @@ export function CardComponent({ cardId, faceDown, selected, onClick, small, mini
 
   const color = suitColor(cardId);
   const label = cardLabel(cardId);
+  const isDisabled = disabled && onClick;
+  const clickable = onClick && !disabled;
 
   return (
     <div
-      className={`card card-face ${color} ${selected ? 'card-selected' : ''} ${sizeClass} ${onClick ? 'card-clickable' : ''}`}
-      onClick={onClick}
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+      className={`card card-face ${color} ${selected ? 'card-selected' : ''} ${sizeClass} ${clickable ? 'card-clickable' : ''} ${isDisabled ? 'card-disabled' : ''}`}
+      onClick={clickable ? onClick : undefined}
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onKeyDown={clickable ? (e) => e.key === 'Enter' && onClick() : undefined}
       data-testid={`card-${cardId}`}
     >
       <span className="card-label">{label}</span>

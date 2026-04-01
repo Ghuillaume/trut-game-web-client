@@ -1,0 +1,48 @@
+.trick-history {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.trick-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.trick-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.trick-label {
+  font-size: 0.5rem;
+  color: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Noto Serif', 'Georgia', serif;
+}
+
+.trick-won .trick-dot {
+  background: rgba(52, 120, 10, 0.12);
+}
+
+.trick-lost .trick-dot {
+  background: rgba(120, 0, 0, 0.12);
+}
+
+.trick-pourri .trick-dot {
+  background: rgba(100, 100, 100, 0.12);
+}
+
+.trick-empty .trick-dot {
+  background: rgba(200, 200, 200, 0.12);
+}
