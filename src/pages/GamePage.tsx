@@ -1,9 +1,10 @@
-import { useState, useCallback, useReducer } from 'react';
+import { useState, useCallback, useReducer, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGameStore } from '../store/gameStore';
 import { useGameSocket } from '../hooks/useGameSocket';
 import { useGameState } from '../hooks/useGameState';
 import { useGameAnnouncements } from '../hooks/useGameAnnouncements';
+import { useGameStats } from '../hooks/useGameStats';
 import { GameBoard } from '../components/game/GameBoard';
 import { PlayerHand } from '../components/game/PlayerHand';
 import { OpponentZone } from '../components/game/OpponentZone';
@@ -17,7 +18,7 @@ import { TrickHistory } from '../components/game/TrickHistory';
 import { GameOverPanel } from '../components/game/GameOverPanel';
 import { TurnIndicator } from '../components/game/TurnIndicator';
 import { isMuted, setMuted } from '../utils/SoundEngine';
-import { phaseLabel } from '../types/game';
+import { phaseLabel, isRoundDecidedAfterTwoTricks } from '../types/game';
 import './GamePage.css';
 
 export function GamePage() {
@@ -32,6 +33,8 @@ export function GamePage() {
   const { gameView, isMyTurn, sortedPlayers, canPlayCard, canTrut, canCall, canFold, canBrellan, canDeuxPareilles } =
     useGameState();
 
+  useGameStats(gameView ?? null, playerId);
+
   const { announcement, clearAnnouncement, showRecap } = useGameAnnouncements({
     trutChallenge: gameView?.trutChallenge ?? null,
     players: gameView?.players ?? [],
@@ -39,6 +42,15 @@ export function GamePage() {
     phase: gameView?.phase ?? '',
     currentTrickLength: gameView?.currentTrick?.length ?? 0,
   });
+
+  // Detect when the 3rd trick is unnecessary (round decided after 2 tricks).
+  // In that case, show the recap immediately without waiting for the server's END_OF_ROUND.
+  const roundDecidedEarly = useMemo(
+    () =>
+      gameView?.phase === 'PLAYING_TRICK' &&
+      isRoundDecidedAfterTwoTricks(gameView?.completedTricks ?? []),
+    [gameView?.phase, gameView?.completedTricks],
+  );
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [, forceUpdate] = useReducer((x: number) => x + 1, 0);
@@ -167,7 +179,7 @@ export function GamePage() {
         <TrutBanner challenge={gameView.trutChallenge} players={gameView.players} />
       )}
 
-      {gameView.phase === 'PLAYING_TRICK' && currentPlayerPseudo && (
+      {gameView.phase === 'PLAYING_TRICK' && !roundDecidedEarly && currentPlayerPseudo && (
         <TurnIndicator isMyTurn={isMyTurn} currentPlayerName={currentPlayerPseudo} />
       )}
 
@@ -194,16 +206,32 @@ export function GamePage() {
         <div className="end-round-transition">Fin de la manche…</div>
       )}
 
-      {isEndOfRound && showRecap && (
+      {(isEndOfRound && showRecap) && (
         <RoundRecap
           completedTricks={gameView.completedTricks ?? []}
           players={gameView.players}
           trutChallenge={gameView.trutChallenge}
           onNextRound={handleNextRound}
+          revealedHands={gameView.revealedHands}
+          myHand={gameView.myHand}
+          myPlayerId={playerId ?? undefined}
         />
       )}
 
-      {!isEndOfRound && (
+      {roundDecidedEarly && (
+        <RoundRecap
+          completedTricks={gameView.completedTricks ?? []}
+          players={gameView.players}
+          trutChallenge={gameView.trutChallenge}
+          onNextRound={handleNextRound}
+          revealedHands={gameView.revealedHands}
+          myHand={gameView.myHand}
+          myPlayerId={playerId ?? undefined}
+          showNextRoundButton={false}
+        />
+      )}
+
+      {!isEndOfRound && !roundDecidedEarly && (
         <>
           {getTrutBadge(playerId!) === 'trute' && (
             <div className="self-trut-badge trut-badge trut-badge-trute">Truté !</div>

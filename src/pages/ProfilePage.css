@@ -1,0 +1,295 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem 5.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100svh;
+}
+
+.profile-loading {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--label);
+  font-style: italic;
+}
+
+.profile-firestore-warning {
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+/* ── Hero ── */
+.profile-hero {
+  padding: 1.5rem 0 0.5rem;
+  text-align: left;
+}
+
+.profile-name {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--heading);
+  margin: 0 0 0.5rem;
+}
+
+.profile-edit-btn {
+  display: none;
+}
+
+.profile-pseudo-edit,
+.profile-pseudo-actions {
+  display: none;
+}
+
+/* ── Cards ── */
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-card--centered {
+  align-items: center;
+  text-align: center;
+}
+
+.profile-card-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--label);
+  font-weight: 600;
+}
+
+.profile-card-sub {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--label);
+  line-height: 1.4;
+}
+
+.profile-card-empty {
+  font-style: italic;
+}
+
+/* ── Win Rate ── */
+.profile-mastery {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.profile-mastery-pct {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1;
+}
+
+.profile-mastery-trend {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.trend-up {
+  color: #16a34a;
+}
+
+.trend-down {
+  color: var(--accent);
+}
+
+/* ── Trut Grid ── */
+.profile-trut-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.profile-trut-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.profile-trut-value {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.profile-trut-key {
+  font-size: 0.75rem;
+  color: var(--label);
+}
+
+/* ── Total Wins ── */
+.profile-total-wins {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.profile-wins-count {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1;
+}
+
+.profile-wins-star {
+  font-size: 1.5rem;
+}
+
+/* ── Highlight Names ── */
+.profile-highlight-name {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin: 0.1rem 0 0;
+}
+
+/* ── Enemies ── */
+.profile-enemies {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profile-enemy-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0;
+}
+
+.profile-enemy-divider {
+  height: 1px;
+  background: var(--surface-border);
+}
+
+.profile-enemy-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.profile-enemy-tag--fav {
+  color: #b45309;
+}
+
+.profile-enemy-tag--fear {
+  color: var(--accent);
+}
+
+/* ── Chronicles ── */
+.profile-chronicles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-chronicles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-chronicles-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.profile-chronicle-entry {
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.profile-chronicle-entry:last-child {
+  border-bottom: none;
+}
+
+.profile-chronicle-date {
+  font-size: 0.72rem;
+  color: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.profile-chronicle-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.profile-chronicle-opponents {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.profile-chronicle-result {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.profile-chronicle-result--win {
+  color: #16a34a;
+}
+
+.profile-chronicle-result--loss {
+  color: var(--accent);
+}
+
+/* ── Sign Out ── */
+.profile-signout {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: none;
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  color: var(--label);
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-family: 'Noto Serif', Georgia, serif;
+  transition: border-color 0.15s, color 0.15s;
+  text-align: center;
+}
+
+.profile-signout:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}

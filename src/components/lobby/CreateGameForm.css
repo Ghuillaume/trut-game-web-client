@@ -87,7 +87,16 @@
   border-bottom-color: var(--accent);
 }
 
-/* ─── Buttons ─── */
+/* ─── Read-only pseudo (logged-in) ─── */
+.input-readonly,
+.input-readonly:focus {
+  cursor: default;
+  color: var(--label);
+  border-bottom-color: transparent;
+  background: transparent;
+  font-style: normal;
+}
+
 .create-game-form button,
 .join-game-form button {
   padding: 16px 24px;

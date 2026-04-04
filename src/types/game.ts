@@ -49,6 +49,8 @@ export interface GameView {
   rematchVotes?: string[];
   disconnectedPlayers?: string[];
   creatorId?: string;
+  /** All players' remaining hands, revealed by the server at end of round */
+  revealedHands?: Record<string, string[]>;
 }
 
 export interface CreateGameResult {
@@ -121,4 +123,27 @@ export function phaseLabel(phase: string): string {
 export function teamPlayerNames(players: PlayerView[], team: string): string {
   const names = players.filter((p) => p.team === team).map((p) => p.pseudo);
   return names.join(' et ') || team;
+}
+
+/**
+ * Returns true when the round winner is already decided after 2 completed tricks,
+ * making the 3rd trick unnecessary.
+ * Cases:
+ *   - The same team won both tricks (2 wins → round over)
+ *   - The first trick was pourri (user-specified variant rule)
+ */
+export function isRoundDecidedAfterTwoTricks(
+  completedTricks: CompletedTrickView[],
+): boolean {
+  if (completedTricks.length < 2) return false;
+
+  const wins: Record<string, number> = {};
+  completedTricks.forEach((t) => {
+    if (t.winnerTeam) wins[t.winnerTeam] = (wins[t.winnerTeam] ?? 0) + 1;
+  });
+  if (Object.values(wins).some((w) => w >= 2)) return true;
+
+  if (completedTricks[0]?.winnerTeam === null) return true;
+
+  return false;
 }

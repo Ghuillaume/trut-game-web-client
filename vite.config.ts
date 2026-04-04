@@ -10,8 +10,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Trut Online',
-        short_name: 'Trut',
+        name: 'Trut Game Online',
+        short_name: 'Trut Game',
         description: 'Jouez au Trut en ligne avec vos proches',
         theme_color: '#343c0a',
         background_color: '#fcf9ef',

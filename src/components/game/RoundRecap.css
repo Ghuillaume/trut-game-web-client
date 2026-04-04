@@ -102,6 +102,33 @@
   background: #2a3108;
 }
 
+.recap-remaining {
+  width: 100%;
+  padding: 10px;
+  background: rgba(52, 60, 10, 0.06);
+  border-radius: 8px;
+  border: 1px dashed var(--surface-border);
+}
+
+.recap-remaining-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  opacity: 0.75;
+}
+
+.recap-remaining-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.recap-remaining-cards {
+  display: flex;
+  gap: 4px;
+}
+
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }

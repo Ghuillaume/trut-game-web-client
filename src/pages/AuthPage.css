@@ -1,0 +1,132 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100svh;
+  padding: 3rem 1.25rem 6rem;
+  background: var(--bg);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-title {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 1.75rem;
+  color: var(--heading);
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Tabs ── */
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.auth-tab {
+  padding: 0.625rem 1rem;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: background 0.15s;
+}
+
+.auth-tab:first-child {
+  border-right: 1px solid var(--surface-border);
+}
+
+.auth-tab--active {
+  background: var(--btn-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Form ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.auth-field label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label);
+}
+
+.auth-field input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.auth-field input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ── Error ── */
+.auth-error {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 4px;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+/* ── Buttons ── */
+.auth-submit {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--btn-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-skip {
+  background: none;
+  border: none;
+  color: var(--label);
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.auth-skip:hover {
+  color: var(--text);
+}
