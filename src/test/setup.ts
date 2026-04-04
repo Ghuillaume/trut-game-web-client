@@ -14,6 +14,11 @@ vi.mock('../lib/statsService', () => ({
   recordGameResult: vi.fn().mockResolvedValue(undefined),
 }));
 
+vi.mock('../lib/gameStatsService', () => ({
+  recordGameStart: vi.fn().mockResolvedValue(undefined),
+  recordGameDuration: vi.fn().mockResolvedValue(undefined),
+}));
+
 vi.mock('../lib/authService', () => ({
   signUpWithEmail: vi.fn(),
   signInWithEmail: vi.fn(),

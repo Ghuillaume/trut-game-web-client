@@ -5,6 +5,7 @@ import { useGameSocket } from '../hooks/useGameSocket';
 import { useGameState } from '../hooks/useGameState';
 import { useGameAnnouncements } from '../hooks/useGameAnnouncements';
 import { useGameStats } from '../hooks/useGameStats';
+import { useGameSessionStats } from '../hooks/useGameSessionStats';
 import { GameBoard } from '../components/game/GameBoard';
 import { PlayerHand } from '../components/game/PlayerHand';
 import { OpponentZone } from '../components/game/OpponentZone';
@@ -34,6 +35,7 @@ export function GamePage() {
     useGameState();
 
   useGameStats(gameView ?? null, playerId);
+  useGameSessionStats(gameId ?? null, gameView ?? null, playerId);
 
   const { announcement, clearAnnouncement, showRecap } = useGameAnnouncements({
     trutChallenge: gameView?.trutChallenge ?? null,
